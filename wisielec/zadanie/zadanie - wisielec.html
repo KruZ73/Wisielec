@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kacperk Krużycki - wisielec</title>
+</head>
+<body onload="start()">
+
+    Podaj litere <input type="text" id="guess">
+    <button onclick="check()">Sprawdz litere</button><br>
+    <span id="slowo"></span>
+    <img id="obrazek" src="img/0.png" style="width: 25%;"><br>
+
+
+    <script>
+
+        var slowo;
+
+        var mask;
+
+        var proby;
+
+
+        function start() {
+            slowo = prompt("Podaj slowo: ");
+
+            mask = Array(slowo.length);
+
+            mask.fill(false);
+
+            proby = 0;
+
+            showWord();
+        }
+
+
+        function check() {
+            let guess = document.getElementById('guess').value;
+
+            let found = false;
+
+            for(let i = 0; i<slowo.length; i++) {
+                if(slowo[i] == guess) {
+                    mask[i] = true;
+                    found = true;
+                } 
+            }
+
+            if(!found) {
+                proby++;
+                document.getElementById("obrazek").src = "img/"+proby+".png";
+                if(proby > 5) alert("Przegrales");
+            }
+
+            showWord();
+        }
+
+
+        function showWord() {
+            let maskedWord = "";
+            for(let i = 0; i < slowo.length; i++) {
+                if(mask[i])
+                    maskedWord += slowo[i];
+                else
+                    maskedWord += "_   ";
+            }
+            document.getElementById("slowo").innerHTML = maskedWord;
+            if(mask.indexOf(false) == -1) 
+                alert("Gratulacje - wygrałeś!");
+        }
+
+
+    </script>
+</body>
+</html>
