@@ -9,7 +9,7 @@
 <body onload="start()">
 
     Podaj litere <input type="text" id="guess">
-    <button onclick="check()">Sprawdz litere</button><br>
+    <button onclick="check()">Sprawdz litere</button><br>                   // pole do zgadywania liter
     <span id="slowo"></span>
     <img id="obrazek" src="img/0.png" style="width: 25%;"><br>
 
@@ -26,7 +26,7 @@
         function start() {
             slowo = prompt("Podaj slowo: ");
 
-            mask = Array(slowo.length);
+            mask = Array(slowo.length);            // ustalanie słowa
 
             mask.fill(false);
 
@@ -41,7 +41,7 @@
 
             let found = false;
 
-            for(let i = 0; i<slowo.length; i++) {
+            for(let i = 0; i<slowo.length; i++) {              // sprawdzanie słowa
                 if(slowo[i] == guess) {
                     mask[i] = true;
                     found = true;
